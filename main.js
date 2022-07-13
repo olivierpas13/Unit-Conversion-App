@@ -4,19 +4,17 @@ const lengthEl = document.getElementById("length-results")
 const volumeEl = document.getElementById("volume-results")
 const massEl = document.getElementById("mass-results")
 
-const metersToFeet = 3.2808
-const litersToGallons = 0.26417
-const kilogramsToPounds = 2.20462
+const METERS_TO_FEET = 3.2808
+const LITERS_TO_GALLONS = 0.26417
+const KILOGRAMS_TO_POUNDS = 2.20462
 
+const calculateResults = (input, conversionValue) =>{
+    let result1 = (input * conversionValue).toFixed(3)
+    let result2 = (input / conversionValue).toFixed(3)
+    return [result1, result2]
+}
 
-buttonEl.addEventListener("click", function(){
-    renderResults(lengthEl, metersToFeet, ["meters", "feet"]);
-    renderResults(volumeEl, litersToGallons, ["liters", "gallons"])
-    renderResults(massEl, kilogramsToPounds, ["kilograms", "pounds"])
-})
-
-
-const renderResults = (element, conversionValue, units) =>{
+const renderResults = (element, conversionValue, units) => {
     let input = inputEl.innerText
 
     let results = calculateResults(input, conversionValue)
@@ -27,8 +25,8 @@ const renderResults = (element, conversionValue, units) =>{
 }
 
 
-const calculateResults = (input, conversionValue) =>{
-    let result1 = (input * conversionValue).toFixed(3)
-    let result2 = (input / conversionValue).toFixed(3)
-    return [result1, result2]
-}
+buttonEl.addEventListener("click", () => {
+    renderResults(lengthEl, METERS_TO_FEET, ["meters", "feet"]);
+    renderResults(volumeEl, LITERS_TO_GALLONS, ["liters", "gallons"])
+    renderResults(massEl, KILOGRAMS_TO_POUNDS, ["kilograms", "pounds"])
+})
